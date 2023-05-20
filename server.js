@@ -1,3 +1,4 @@
+const { Server } = require("socket.io");
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
@@ -27,5 +28,16 @@ const server = http.createServer((req, res) => {
         res.end();
     }
 });
+const io = new Server(server);
+io.on('connection', (socket) => {
+    let userNickname = 'user'
+    console.log('a user connection. id -' + socket.id);
 
+    socket.on('set_nickname', (Nickname) => {
+        userNickname = Nickname;
+    });
+    socket.on('new_message', (message) => {
+        io.emit('message', message);
+    });
+})
 server.listen(666);
