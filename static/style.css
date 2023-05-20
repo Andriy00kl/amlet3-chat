@@ -1,4 +1,38 @@
-h1{
-    color: purple;
-    text-align: center;
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20%;
+    height: 50px;
+    width: 500px;
+    color: white;
+    background-color:rgb(30, 101, 255) ;
+}
+ul{
+    padding: 5rem 0;
+}
+li{
+    margin: 5px;
+    padding: 5px;
+    color: white;
+    border-radius: 30%;
+    background-color: royalblue;
+}
+#from{
+    position: fixed;
+}
+#input{
+    height: 25px;
+    width: 300px;
+}
+.submit{
+    color: white;
+    height: 25px;
+    background-color:rgb(30, 101, 255) ;
 }
