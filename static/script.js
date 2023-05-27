@@ -1,5 +1,3 @@
-const { write } = require("fs");
-
 const submit = document.getElementById("from");
 const input = document.getElementById("input");
 const message = document.getElementById("message")

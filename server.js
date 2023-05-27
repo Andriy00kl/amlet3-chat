@@ -4,13 +4,13 @@ const fs = require('fs');
 const path = require('path');
 
 const pathToIndex = path.join(__dirname, 'static', 'index.html');
-const indexHtmlFile = fs.readFileSync(pathToIndex);
 const pathToScript = path.join(__dirname, 'static', 'script.js');
 const indexJsFile = fs.readFileSync(pathToScript);
 const pathToStyle = path.join(__dirname, 'static', 'style.css');
 const indexCssFile = fs.readFileSync(pathToStyle);
 
 const server = http.createServer((req, res) => {
+    const indexHtmlFile = fs.readFileSync(pathToIndex);
     if(req.url === "/"){
         res.writeHead(200, {"Content-type" : "text/html"});
         res.end(indexHtmlFile);
