@@ -2,6 +2,7 @@ const { Server } = require("socket.io");
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const db = require('./database')
 
 const pathToIndex = path.join(__dirname, 'static', 'index.html');
 const pathToScript = path.join(__dirname, 'static', 'script.js');
@@ -39,5 +40,8 @@ io.on('connection', (socket) => {
     socket.on('new_message', (message) => {
         io.emit('message', message);
     });
+    let message = db.getMessage();
+    db.addMessage(message, 1);
 })
+
 server.listen(666);

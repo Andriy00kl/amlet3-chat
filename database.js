@@ -32,7 +32,7 @@ dbWrapper
                     `CREATE TABLE message(
                         msg_id INTEGER PRIMARY KEY AUTOINCREMENT,
                         content TEXT,
-                        author TEXT
+                        author TEXT,
                         FOREIGN KEY (author) REFERENCES user(user_id) 
                         );`
                 );
@@ -44,3 +44,21 @@ dbWrapper
             console.error(dbError);
         }
     });
+    module.exports = {
+        getMessage: async () => {
+            try{
+                return await db.all(
+                    `SELECT msg_id, content, login, user_id from message
+                    JOIN user ON message.author = user.user_id`
+                );
+            } catch (dbError) {
+                console.error(dbError);
+            }
+        },
+        addMessage: async (msg, userId) => {
+            await db.run(
+                `INSERT INTO message (content, author) VALUES (?, ?)`,
+                [msg, userId]
+            );
+        }
+    };
