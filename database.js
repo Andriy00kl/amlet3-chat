@@ -44,12 +44,13 @@ dbWrapper
             console.error(dbError);
         }
     });
+
     module.exports = {
         getMessage: async () => {
             try{
                 return await db.all(
                     `SELECT msg_id, content, login, user_id from message
-                    JOIN user ON message.author = user.user_id`
+                    JOIN user ON message.author = user.login`
                 );
             } catch (dbError) {
                 console.error(dbError);
@@ -60,5 +61,5 @@ dbWrapper
                 `INSERT INTO message (content, author) VALUES (?, ?)`,
                 [msg, userId]
             );
-        }
+        },
     };

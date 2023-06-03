@@ -1,8 +1,18 @@
+const { allMessage } = require("../database");
+
 const submit = document.getElementById("from");
 const input = document.getElementById("input");
 const message = document.getElementById("message")
 const Nickname = document.getElementById("Nickname")
 const socket = io();
+
+const xhr = new XMLHttpRequest();
+xhr.open("GET", "http://localhost:666/")
+xhr.responseType = 'json'
+xhr.send()
+xhr.onload = () => {
+    
+}
 
 submit.addEventListener("submit", function(event){
     event.preventDefault();
